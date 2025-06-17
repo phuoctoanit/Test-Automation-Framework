@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="CucumberSuite" parallel="methods" thread-count="2">
+<suite name="CucumberSuite" parallel="tests" thread-count="2">
     <test name="RunCucumberTests">
         <classes>
-            <class name="runners.TestWebNGRunner"/>
+            <class name="tests.web.LoginTest"/>
         </classes>
     </test>
 </suite>

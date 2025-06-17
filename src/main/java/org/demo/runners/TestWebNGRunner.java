@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/features/web",
-        glue = {"stepdefinitions", "hooks"},
+        glue = {"tests", "hooks"},
         plugin = {"pretty",
                 "html:target/cucumber-reports.html",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},

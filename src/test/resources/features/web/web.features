@@ -1,7 +1,0 @@
-Feature: CTF Learn Testing
-
-    Scenario: Verify Login success with valid credentials
-    Given: I am open the page
-    When I navigate to the Login page
-    When I enter valid credentials
-    Then I should be logg in
