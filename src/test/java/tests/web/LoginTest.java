@@ -1,5 +1,9 @@
 package tests.web;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.demo.pages.webapp.HomePage;
 import org.demo.pages.webapp.LoginPage;
 import org.demo.utils.CredentialLoader;
@@ -14,11 +18,15 @@ public class LoginTest extends BaseTest{
 
     @BeforeClass
     public void initPages() {
+        super.initSession();
         homePage = super.webPageManager.getHomePage();
         loginPage = super.webPageManager.getLoginPage();
     }
 
-    @Test
+    @Test(description = "Valid login scenario")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Verify login with valid credentials")
+    @Story("Valid login")
     public void loginTest(){
         String url = EnvLoader.get("baseURL");
         this.driver.get(url);
@@ -26,6 +34,5 @@ public class LoginTest extends BaseTest{
         String username = CredentialLoader.getCredential("username");
         String password = CredentialLoader.getCredential("password");
         loginPage.login(username, password);
-        loginPage.assertUrlContains("/dashboard");
     }
 }

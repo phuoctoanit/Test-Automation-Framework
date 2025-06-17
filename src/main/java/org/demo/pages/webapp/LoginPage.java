@@ -25,5 +25,7 @@ public class LoginPage extends WebBasePage {
         userNameEle.sendKeys(userName);
         passwordEle.sendKeys(password);
         loginBtn.click();
+
+        assertUrlContains("/dashboard");
     }
 }

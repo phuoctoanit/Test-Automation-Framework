@@ -30,7 +30,7 @@ public class WebPageManager {
 
     public DashboardPage getDashboardPage() {
         if(this.dashboardPage == null) {
-            this.dashboardPage = new DashboardPage(driver);
+            this.dashboardPage = new DashboardPage(this.driver);
         }
         return this.dashboardPage;
     }

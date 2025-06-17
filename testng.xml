@@ -3,6 +3,13 @@
     <test name="RunCucumberTests">
         <classes>
             <class name="tests.web.LoginTest"/>
+            <class name="tests.web.DashboardTest" />
         </classes>
     </test>
+<!--    <test name="RunCucumberTests2">-->
+<!--        <classes>-->
+<!--            <class name="tests.web.LoginTest"/>-->
+<!--&lt;!&ndash;            <class name="tests.web.DashboardTest" />&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
