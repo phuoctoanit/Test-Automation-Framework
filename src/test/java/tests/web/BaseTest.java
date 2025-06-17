@@ -1,6 +1,5 @@
 package tests.web;
 
-import io.cucumber.java.Before;
 import org.demo.drivers.TestSession;
 import org.demo.drivers.WebDriverFactory;
 import org.demo.managers.WebPageManager;
