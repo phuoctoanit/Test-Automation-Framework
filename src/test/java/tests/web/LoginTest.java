@@ -8,6 +8,7 @@ import org.demo.pages.webapp.HomePage;
 import org.demo.pages.webapp.LoginPage;
 import org.demo.utils.CredentialLoader;
 import org.demo.utils.EnvLoader;
+import org.demo.utils.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -28,6 +29,8 @@ public class LoginTest extends BaseTest{
     @Description("Test Description: Verify login with valid credentials")
     @Story("Valid login")
     public void loginTest(){
+        // Navigate to the login page and perform login
+        Logger.info("Navigate to Login Page: " + EnvLoader.get("baseURL"));
         String url = EnvLoader.get("baseURL");
         this.driver.get(url);
         homePage.navigateToLoginPage();

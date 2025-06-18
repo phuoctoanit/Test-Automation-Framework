@@ -19,9 +19,9 @@ public class HomePage extends WebBasePage {
     }
 
     public void navigateToLoginPage() {
-        Logger.info("Navigate to Login Page");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
-        WebElement loginHref = wait.until(ExpectedConditions.visibilityOfElementLocated(loginHrefField));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
+        //WebElement loginHref = wait.until(ExpectedConditions.visibilityOfElementLocated(loginHrefField));
+        WebElement loginHref = wait.until(ExpectedConditions.elementToBeClickable(loginHrefField));
         loginHref.click();
     }
 }
