@@ -1,6 +1,7 @@
 package org.demo.drivers;
 
 import org.demo.utils.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -38,6 +39,7 @@ public class WebDriverFactory {
                     Logger.debug("Running on CI environment with headless and remote grid");
                     try{
                         firefoxOptions.addArguments("--headless=new");
+                        firefoxOptions.addArguments("--window-size=1920,1080");
                         webDriver = new RemoteWebDriver(buildURL(), firefoxOptions);
                     }catch (MalformedURLException e) {
                         Logger.error("Exception occurred during process: " +  e);
@@ -53,6 +55,7 @@ public class WebDriverFactory {
                     Logger.debug("Running on CI environment with headless and remote grid");
                     try{
                         chromeOptions.addArguments("--headless=new");
+                        chromeOptions.addArguments("--window-size=1920,1080");
                         webDriver = new RemoteWebDriver(buildURL(), chromeOptions);
                     }catch (MalformedURLException e) {
                         Logger.error("Exception occurred during process: " +  e);
@@ -65,7 +68,7 @@ public class WebDriverFactory {
                 throw new IllegalStateException("Unexpected value: " + browser.toLowerCase());
         }
         tlWedDriver.set(webDriver);
-        getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920, 1080));
     }
 
     public static WebDriver getDriver() {
