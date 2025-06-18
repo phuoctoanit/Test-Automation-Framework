@@ -22,20 +22,28 @@ public class CredentialLoader {
     }
     public static String getCredential(String key) {
         String env = System.getProperty("env", "qa").toUpperCase();
+        String isHeadless = System.getProperty("headless", "true").toUpperCase(Locale.ROOT);
 
         String envKey = env + "_" + key.toUpperCase(Locale.ROOT);
-        Logger.debug("Looking for credential key: " + envKey);
+        Logger.info("Looking for credential key: " + envKey);
+
+        String value = "";
         //First check on CI/CD
-        String value = System.getenv(envKey);
-        Logger.debug("Found in environment variables: " + value);
-        if(value != null && !value.isEmpty()){
-            return value;
+        if(Boolean.parseBoolean(isHeadless)) {
+            value = System.getenv(envKey);
+            Logger.info("Found in environment variables: " + value);
+            if(value != null && !value.isEmpty()){
+                return value;
+            }
+        }else {
+            Logger.info("Not found in environment variables, checking properties file...");
+            // Fallback to .properties file (local)
+            value = credentialProperties.getProperty(envKey);
+            if (value != null) {
+                return value;
+            }
         }
-        // Fallback to .properties file (local)
-        value = credentialProperties.getProperty(envKey);
-        if (value != null) {
-            return value;
-        }
+
 
         throw new RuntimeException("Credential not found for key: " + envKey);
     }

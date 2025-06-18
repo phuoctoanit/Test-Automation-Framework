@@ -92,7 +92,7 @@ public class WebDriverFactory {
 
     private static boolean isCI() {
         // Detect headless mode dynamically
-        return Boolean.parseBoolean(System.getProperty("headless", "false"))
+        return Boolean.parseBoolean(System.getProperty("headless", "true"))
                 || Boolean.parseBoolean(System.getenv("CI"));
     }
 }
