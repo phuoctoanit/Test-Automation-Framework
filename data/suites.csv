@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","141","createChallengeTest","CTF Lean Testing","Wed Jun 18 09:50:49 UTC 2025","broken","Wed Jun 18 09:50:49 UTC 2025","tests.web.ChallengeTest","Web application - CTF Lean Testing","tests.web.ChallengeTest","createChallengeTest"
+"","30564","openChallengeCreationTest","CTF Lean Testing","Wed Jun 18 09:50:19 UTC 2025","broken","Wed Jun 18 09:50:49 UTC 2025","tests.web.DashboardTest","Web application - CTF Lean Testing","tests.web.DashboardTest","openChallengeCreationTest"
+"Test Description: Verify login with valid credentials","240905","Valid login scenario","CTF Lean Testing","Wed Jun 18 09:46:18 UTC 2025","broken","Wed Jun 18 09:50:19 UTC 2025","tests.web.LoginTest","Web application - CTF Lean Testing","tests.web.LoginTest","loginTest"
