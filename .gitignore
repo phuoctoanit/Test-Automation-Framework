@@ -2,7 +2,7 @@ target/
 .mvn/
 .idea/
 .env
-src/test/resources/env/credentials.properties
+src/main/resources/env/credentials.properties
 allure-report/
 allure-results/
 logs/

@@ -1,5 +1,9 @@
 package tests.web;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.demo.models.Challenge;
 import org.demo.pages.webapp.challenge.ChallengeCreationPage;
 import org.demo.pages.webapp.challenge.ChallengeDetailPage;
@@ -26,7 +30,10 @@ public class ChallengeTest extends BaseTest{
         myChallengePage = super.webPageManager.getMyChallengePage();
     }
 
-    @Test(dataProvider = "challengeData", dataProviderClass = ChallengeDataProvider.class)
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Create a new challenge and verify its details")
+    @Story("User Story 1 (Web)")
+    @Test(description = "Create a new challenge and verify its details", dataProvider = "challengeData", dataProviderClass = ChallengeDataProvider.class)
     public void createChallengeTest(Challenge challenge) {
         Logger.info("Create challenge with title: " + challenge.getTitle());
         challengeCreationPage.createChallenge(challenge);

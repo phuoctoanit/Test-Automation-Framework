@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest{
     @Test(description = "Valid login scenario")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Test Description: Verify login with valid credentials")
-    @Story("Valid login")
+    @Story("User Story 1 (Web)")
     public void loginTest(){
         // Navigate to the login page and perform login
         Logger.info("Navigate to Login Page: " + EnvLoader.get("baseURL"));
