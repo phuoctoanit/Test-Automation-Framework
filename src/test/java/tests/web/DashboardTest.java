@@ -16,7 +16,7 @@ public class DashboardTest extends BaseTest {
     }
 
     @Test
-    public void openChallengeCreation() {
+    public void openChallengeCreationTest() {
         Logger.info("Open the Challenge Creation page");
         dashboardPage.openChallengeCreation();
     }

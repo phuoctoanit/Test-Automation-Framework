@@ -1,15 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="CucumberSuite" parallel="tests" thread-count="2">
-    <test name="RunCucumberTests">
+<suite name="CTF Lean Testing" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="org.demo.listeners.AllureScreenshotListener"/>
+    </listeners>
+    <test name="Web application - CTF Lean Testing">
         <classes>
             <class name="tests.web.LoginTest"/>
             <class name="tests.web.DashboardTest" />
+            <class name="tests.web.ChallengeTest"/>
         </classes>
     </test>
-<!--    <test name="RunCucumberTests2">-->
-<!--        <classes>-->
-<!--            <class name="tests.web.LoginTest"/>-->
-<!--&lt;!&ndash;            <class name="tests.web.DashboardTest" />&ndash;&gt;-->
-<!--        </classes>-->
-<!--    </test>-->
 </suite>

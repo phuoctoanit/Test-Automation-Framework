@@ -1,8 +1,9 @@
 package org.demo.managers;
 
-import org.demo.pages.webapp.DashboardPage;
-import org.demo.pages.webapp.HomePage;
-import org.demo.pages.webapp.LoginPage;
+import org.demo.pages.webapp.*;
+import org.demo.pages.webapp.challenge.ChallengeCreationPage;
+import org.demo.pages.webapp.challenge.ChallengeDetailPage;
+import org.demo.pages.webapp.challenge.MyChallengePage;
 import org.openqa.selenium.WebDriver;
 
 public class WebPageManager {
@@ -11,6 +12,9 @@ public class WebPageManager {
     private HomePage homePage;
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private ChallengeCreationPage challengeCreationPage;
+    private ChallengeDetailPage challengeDetailPage;
+    private MyChallengePage myChallengePage;
 
     public WebPageManager(WebDriver driver) { this.driver = driver; }
 
@@ -33,5 +37,26 @@ public class WebPageManager {
             this.dashboardPage = new DashboardPage(this.driver);
         }
         return this.dashboardPage;
+    }
+
+    public ChallengeCreationPage getChallengeCreation() {
+        if(this.challengeCreationPage == null) {
+            this.challengeCreationPage = new ChallengeCreationPage(this.driver);
+        }
+        return this.challengeCreationPage;
+    }
+
+    public ChallengeDetailPage getChallengeDetailPage() {
+        if(this.challengeDetailPage == null) {
+            this.challengeDetailPage = new ChallengeDetailPage(this.driver);
+        }
+        return this.challengeDetailPage;
+    }
+
+    public MyChallengePage getMyChallengePage() {
+        if(this.myChallengePage == null) {
+            this.myChallengePage = new MyChallengePage(driver);
+        }
+        return this.myChallengePage;
     }
 }
