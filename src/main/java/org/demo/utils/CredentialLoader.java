@@ -24,9 +24,10 @@ public class CredentialLoader {
         String env = System.getProperty("env", "qa").toUpperCase();
 
         String envKey = env + "_" + key.toUpperCase(Locale.ROOT);
-
+        Logger.debug("Looking for credential key: " + envKey);
         //First check on CI/CD
         String value = System.getenv(envKey);
+        Logger.debug("Found in environment variables: " + value);
         if(value != null && !value.isEmpty()){
             return value;
         }
