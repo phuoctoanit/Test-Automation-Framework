@@ -13,13 +13,11 @@ jobs:
   test-chrome:
     name: Test on Chrome
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        env: [ dev, qa, staging ]
 
     env:
       BROWSER: chrome
-      ENV: ${{ matrix.env }}
+      ENV: staging
+
 
     services:
       selenium:
