@@ -1,13 +1,13 @@
 package org.demo.listeners;
 
-import org.demo.drivers.TestSession;
+import org.demo.drivers.web.WebDriverSession;
 import org.demo.utils.Logger;
 import org.demo.utils.ScreenshotUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class AllureScreenshotListener implements ITestListener {
+public class ScreenshotListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -29,7 +29,7 @@ public class AllureScreenshotListener implements ITestListener {
     private void attachScreenshot(ITestResult result) {
         try {
             Object testClass = result.getInstance();
-            WebDriver driver = TestSession.getDriver();
+            WebDriver driver = WebDriverSession.getDriver();
             if (driver != null) {
                 ScreenshotUtil.captureScreenshot(driver, "Failure Screenshot");
             } else {

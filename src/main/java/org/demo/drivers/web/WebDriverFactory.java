@@ -1,4 +1,4 @@
-package org.demo.drivers;
+package org.demo.drivers.web;
 
 import org.demo.utils.Logger;
 import org.openqa.selenium.Dimension;

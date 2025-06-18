@@ -1,9 +1,9 @@
-package org.demo.drivers;
+package org.demo.drivers.web;
 
 import org.demo.managers.WebPageManager;
 import org.openqa.selenium.WebDriver;
 
-public class TestSession {
+public class WebDriverSession {
 
     private static WebDriver driver;
     private static WebPageManager webPageManager;

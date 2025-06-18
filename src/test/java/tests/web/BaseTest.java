@@ -1,7 +1,7 @@
 package tests.web;
 
-import org.demo.drivers.TestSession;
-import org.demo.drivers.WebDriverFactory;
+import org.demo.drivers.web.WebDriverSession;
+import org.demo.drivers.web.WebDriverFactory;
 import org.demo.managers.WebPageManager;
 import org.demo.utils.EnvLoader;
 import org.demo.utils.Logger;
@@ -29,8 +29,8 @@ public class BaseTest {
         this.driver = WebDriverFactory.getDriver();
         this.webPageManager = new WebPageManager(this.driver);
 
-        TestSession.setDriver(this.driver);
-        TestSession.setWebPageManager(this.webPageManager);
+        WebDriverSession.setDriver(this.driver);
+        WebDriverSession.setWebPageManager(this.webPageManager);
 
         Logger.info("Executing suite on environment: " + env.toUpperCase() + " and browser: " + browser.toUpperCase());
     }
@@ -42,8 +42,8 @@ public class BaseTest {
 
     @BeforeClass
     public void initSession() {
-        this.driver = TestSession.getDriver();
-        this.webPageManager = TestSession.getWebPageManager();
+        this.driver = WebDriverSession.getDriver();
+        this.webPageManager = WebDriverSession.getWebPageManager();
 
         if (this.driver == null || this.webPageManager == null) {
             throw new RuntimeException("Test session not initialized. Ensure @BeforeSuite ran correctly.");
