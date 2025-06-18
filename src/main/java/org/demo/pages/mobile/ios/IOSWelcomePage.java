@@ -20,11 +20,9 @@ public class IOSWelcomePage extends IOSBasePage {
     public void goToSummaryPage() {
         // Example test method
         Logger.info("Clicking on the Continue button on the iOS Home Page.");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         WebElement continueEle = wait.until(d -> d.findElement(AppiumBy.accessibilityId("Fitness.WelcomeView.Continue")));
         continueEle.click();
-
-
     }
 
     public void accessToSummaryPage(){
