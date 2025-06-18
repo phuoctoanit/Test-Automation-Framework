@@ -1,9 +1,6 @@
 package tests.web;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.demo.pages.webapp.HomePage;
 import org.demo.pages.webapp.LoginPage;
 import org.demo.utils.CredentialLoader;
@@ -31,11 +28,13 @@ public class LoginTest extends BaseTest{
     public void loginTest(){
         // Navigate to the login page and perform login
         Logger.info("Navigate to Login Page: " + EnvLoader.get("baseURL"));
+        Allure.step("Navigate to Login Page: " + EnvLoader.get("baseURL"));
         String url = EnvLoader.get("baseURL");
         this.driver.get(url);
         homePage.navigateToLoginPage();
         String username = CredentialLoader.getCredential("username");
         String password = CredentialLoader.getCredential("password");
+        Allure.step("Perform login with username: *** and password: ***");
         loginPage.login(username, password);
     }
 }

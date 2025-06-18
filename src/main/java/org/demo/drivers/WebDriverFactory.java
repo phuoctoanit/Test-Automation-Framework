@@ -36,7 +36,7 @@ public class WebDriverFactory {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("browserName", "firefox");
                 if (isCI()){
-                    Logger.debug("Running on CI environment with headless and remote grid");
+                    Logger.info("Running on CI environment with headless and remote grid");
                     try{
                         firefoxOptions.addArguments("--headless=new");
                         firefoxOptions.addArguments("--window-size=1920,1080");
@@ -55,7 +55,7 @@ public class WebDriverFactory {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("browserName", "chrome");
                 if (isCI()) {
-                    Logger.debug("Running on CI environment with headless and remote grid");
+                    Logger.info("Running on CI environment with headless and remote grid");
                     try{
                         chromeOptions.addArguments("--headless=new");
                         chromeOptions.addArguments("--window-size=1920,1080");

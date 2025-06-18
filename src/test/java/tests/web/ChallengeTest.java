@@ -1,9 +1,6 @@
 package tests.web;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.demo.models.Challenge;
 import org.demo.pages.webapp.challenge.ChallengeCreationPage;
 import org.demo.pages.webapp.challenge.ChallengeDetailPage;
@@ -36,14 +33,18 @@ public class ChallengeTest extends BaseTest{
     @Test(description = "Create a new challenge and verify its details", dataProvider = "challengeData", dataProviderClass = ChallengeDataProvider.class)
     public void createChallengeTest(Challenge challenge) {
         Logger.info("Create challenge with title: " + challenge.getTitle());
+        Allure.step("Create challenge with title: " + challenge.getTitle());
         challengeCreationPage.createChallenge(challenge);
         //Then should redirect to newly created challenge details
         Logger.info("Validation challenge in detail page");
+        Allure.step("Validation challenge in detail page");
         challengeDetailPage.assertionTitle(challenge.getTitle());
         challengeDetailPage.assertionPoint(challenge.getPoint());
         challengeDetailPage.assertionDescription(challenge.getDescription());
 
         // And should be displayed in the dashboard
+        Logger.info("Open My Challenge page to verify the newly created challenge");
+        Allure.step("Open My Challenge page to verify the newly created challenge");
         dashboardPage.openMyChallenge();
         myChallengePage.verifyNewlyCreatedChallenge(challenge);
     }
