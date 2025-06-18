@@ -57,6 +57,7 @@ jobs:
         run: mvn clean test -Dbrowser=${{ env.BROWSER }} -Denv=${{ env.ENV }}
 
       - name: Generate Allure Report
+        if: always()
         run: |
           allure generate allure-results --clean -o allure-report
 

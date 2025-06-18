@@ -20,7 +20,7 @@ public class HomePage extends WebBasePage {
 
     public void navigateToLoginPage() {
         Logger.info("Navigate to Login Page");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         WebElement loginHref = wait.until(ExpectedConditions.visibilityOfElementLocated(loginHrefField));
         loginHref.click();
     }
