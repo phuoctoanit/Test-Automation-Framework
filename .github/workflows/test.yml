@@ -67,7 +67,7 @@ jobs:
           echo "QA_USERNAME=${{ secrets.QA_USERNAME }}" >> src/main/resources/env/credentials.properties
           echo "QA_PASSWORD=${{ secrets.QA_PASSWORD }}" >> src/main/resources/env/credentials.properties
           echo "STAGING_USERNAME=${{ secrets.STAGING_USERNAME }}" >> src/main/resources/env/credentials.properties
-          cho "STAGING_PASSWORD=${{ secrets.STAGING_PASSWORD }}" >> src/main/resources/env/credentials.properties
+          echo "STAGING_PASSWORD=${{ secrets.STAGING_PASSWORD }}" >> src/main/resources/env/credentials.properties
 
       - name: Run Tests (Chrome)
         run: mvn clean test -Dbrowser=${{ env.BROWSER }} -Denv=${{ env.ENV }}
