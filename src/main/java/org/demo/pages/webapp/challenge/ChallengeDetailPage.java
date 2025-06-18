@@ -4,7 +4,11 @@ import org.demo.base.WebBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class ChallengeDetailPage extends WebBasePage {
 
@@ -21,17 +25,20 @@ public class ChallengeDetailPage extends WebBasePage {
     }
 
     public void assertionTitle(String title) {
-        WebElement titleEle = driver.findElement(titleField);
-        Assert.assertEquals(titleEle.getText(), title);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement titleEle = wait.until(ExpectedConditions.visibilityOfElementLocated(titleField));
+        Assert.assertEquals(titleEle.getText(), title, "Challenge title not matched");
     }
 
     public void assertionPoint(int point) {
-        WebElement pointEle = driver.findElement(pointField);
-        Assert.assertEquals(pointEle.getText(), String.valueOf(point));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement pointEle = wait.until(ExpectedConditions.visibilityOfElementLocated(pointField));
+        Assert.assertEquals(pointEle.getText(), String.valueOf(point), "Challenge points not matched");
     }
 
     public void assertionDescription(String description) {
-        WebElement descriptionEle = driver.findElement(descriptionField);
-        Assert.assertTrue(descriptionEle.getText().contains(description));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement descriptionEle = wait.until(ExpectedConditions.visibilityOfElementLocated(descriptionField));
+        Assert.assertTrue(descriptionEle.getText().contains(description), "Challenge description not matched");
     }
 }

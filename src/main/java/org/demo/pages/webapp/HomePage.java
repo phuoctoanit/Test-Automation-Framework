@@ -5,8 +5,14 @@ import org.demo.utils.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage extends WebBasePage {
+
+    private final By loginHrefField = By.xpath("//li[contains(@class, 'nav-item')]//a[@href='/user/login']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -14,7 +20,8 @@ public class HomePage extends WebBasePage {
 
     public void navigateToLoginPage() {
         Logger.info("Navigate to Login Page");
-        WebElement loginHref = driver.findElement(By.xpath("//li[contains(@class, 'nav-item')]//a[@href='/user/login']"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement loginHref = wait.until(ExpectedConditions.visibilityOfElementLocated(loginHrefField));
         loginHref.click();
     }
 }
