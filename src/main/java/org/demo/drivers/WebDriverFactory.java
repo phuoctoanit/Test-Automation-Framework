@@ -40,6 +40,9 @@ public class WebDriverFactory {
                     try{
                         firefoxOptions.addArguments("--headless=new");
                         firefoxOptions.addArguments("--window-size=1920,1080");
+                        firefoxOptions.addArguments("--disable-gpu");
+                        firefoxOptions.addArguments("--no-sandbox"); // important for CI
+                        firefoxOptions.addArguments("--disable-dev-shm-usage");
                         webDriver = new RemoteWebDriver(buildURL(), firefoxOptions);
                     }catch (MalformedURLException e) {
                         Logger.error("Exception occurred during process: " +  e);
@@ -56,6 +59,9 @@ public class WebDriverFactory {
                     try{
                         chromeOptions.addArguments("--headless=new");
                         chromeOptions.addArguments("--window-size=1920,1080");
+                        chromeOptions.addArguments("--disable-gpu");
+                        chromeOptions.addArguments("--no-sandbox"); // important for CI
+                        chromeOptions.addArguments("--disable-dev-shm-usage");
                         webDriver = new RemoteWebDriver(buildURL(), chromeOptions);
                     }catch (MalformedURLException e) {
                         Logger.error("Exception occurred during process: " +  e);
