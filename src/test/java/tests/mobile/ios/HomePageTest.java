@@ -2,7 +2,7 @@ package tests.mobile.ios;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.qameta.allure.Allure;
+import io.qameta.allure.*;
 import org.demo.drivers.mobile.MobileDriverFactory;
 import org.demo.drivers.mobile.PlatformType;
 import org.demo.managers.IOSPageManager;
@@ -30,7 +30,10 @@ public class HomePageTest extends BaseTest{
         iosWelcomePage = iosPageManager.getIosHomePage();
     }
 
-    @Test
+    @Test(description = "Verify access to the iOS Home Page and Summary button")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test Description: Verify access to the iOS Home Page and Summary button")
+    @Story("User Story 2 (Mobile iOS)")
     public void navigateToHome() {
         Logger.info("Navigating to the Welcome page Fitness.");
         Allure.step("Navigating to the Welcome page Fitness.");
