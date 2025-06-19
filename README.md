@@ -21,6 +21,29 @@ The purpose of this repository is to provide a comprehensive test automation fra
 
 ## Installation
 
+clone the repository:
+
+```bash
+git clone https://github.com/phuoctoanit/Test-Automation-Framework.git
+cd Test-Automation-Framework
+```
+Install dependencies using Maven:
+
+```bash
+mvn clean install
+```
+
+Ensure you have the following prerequisites installed:
+- Java Development Kit (JDK) 17 or higher
+- Maven 3.6 or higher
+- Selenium Server (download the latest version from [Selenium](https://www.selenium.dev/downloads/))
+- Allure Commandline (for reporting, optional)
+- Appium (for mobile testing, optional)
+- Android SDK (for Android testing, optional)
+- Xcode (for iOS testing, optional)
+- Node.js and npm (for running the web application, optional)
+
+
 ## Structure
 The structure of the test automation framework is organized to facilitate easy navigation and management of test cases, configurations, and resources. The main components include:
 
