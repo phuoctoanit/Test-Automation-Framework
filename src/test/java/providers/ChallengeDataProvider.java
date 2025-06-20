@@ -15,6 +15,7 @@ public class ChallengeDataProvider {
         String timeStr = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String title = "Challenge Testing _ " + timeStr;
 
+        //Below is can be replaced by csv file or database
         Challenge challenge = new Challenge(title, "CTFlearn{Testing}", "Challenge descriptions should be in English unless another language is specifically required to create a challenge.", "", "Binary", 40, "Challenge descriptions should be in English unless another language is specifically required to create a challenge.");
         challenge.setCreatedBy(CredentialLoader.getCredential("username"));
         String[] categories = new String[] {"Web", "Binary", "Forensics", "Reverse Engineering", "Cryptography", "Miscellaneous"};
