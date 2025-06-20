@@ -1,5 +1,6 @@
 package org.demo.drivers.web;
 
+import org.demo.constants.Constants;
 import org.demo.utils.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class WebDriverFactory {
     public static void initWebDriver() {
         WebDriver webDriver = null;
         String browser = browserName.get();
-        if(browser == null) browser = "chrome";
+        if(browser == null) browser = Constants.DEFAULT_BROWSER;
         switch (browser.toLowerCase()) {
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -92,7 +93,7 @@ public class WebDriverFactory {
 
     private static boolean isCI() {
         // Detect headless mode dynamically
-        return Boolean.parseBoolean(System.getProperty("headless", "false"))
+        return Boolean.parseBoolean(System.getProperty("headless", String.valueOf(Constants.DEFAULT_HEADLESS)))
                 || Boolean.parseBoolean(System.getenv("CI"));
     }
 }

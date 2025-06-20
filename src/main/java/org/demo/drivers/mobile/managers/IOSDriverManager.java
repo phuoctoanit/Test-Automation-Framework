@@ -1,13 +1,13 @@
-package org.demo.drivers.mobile;
+package org.demo.drivers.mobile.managers;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
+import org.demo.drivers.mobile.implement.MobileDriverImplement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
-import java.util.Map;
 
-public class IOSDriverManger implements MobileDriverManager{
+public class IOSDriverManager implements MobileDriverImplement {
 
     @Override
     public AppiumDriver createDriver() throws Exception {

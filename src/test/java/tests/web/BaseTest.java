@@ -1,5 +1,6 @@
 package tests.web;
 
+import org.demo.constants.Constants;
 import org.demo.drivers.web.WebDriverSession;
 import org.demo.drivers.web.WebDriverFactory;
 import org.demo.managers.WebPageManager;
@@ -22,8 +23,8 @@ public class BaseTest {
 
     @BeforeSuite
     public void setup() {
-        String browser = System.getProperty("browser", "chrome"); // fallback default
-        String env = System.getProperty("env", "qa");
+        String browser = System.getProperty("browser", Constants.DEFAULT_BROWSER); // fallback default
+        String env = System.getProperty("env", Constants.DEFAULT_ENV);
 
         //Loading environment
         EnvLoader.load(env);

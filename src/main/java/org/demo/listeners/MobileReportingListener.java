@@ -1,13 +1,13 @@
 package org.demo.listeners;
 
-import org.demo.drivers.web.WebDriverSession;
+import io.appium.java_client.AppiumDriver;
 import org.demo.utils.Logger;
 import org.demo.utils.ScreenshotUtil;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import java.lang.reflect.Field;
 
-public class ScreenshotListener implements ITestListener {
+public class MobileReportingListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
@@ -29,7 +29,9 @@ public class ScreenshotListener implements ITestListener {
     private void attachScreenshot(ITestResult result) {
         try {
             Object testClass = result.getInstance();
-            WebDriver driver = WebDriverSession.getDriver();
+            Field field = testClass.getClass().getDeclaredField("driver");
+            field.setAccessible(true);
+            AppiumDriver driver = (AppiumDriver) field.get(testClass);
             if (driver != null) {
                 ScreenshotUtil.captureScreenshot(driver, "Failure Screenshot");
             } else {
@@ -40,4 +42,5 @@ public class ScreenshotListener implements ITestListener {
             Logger.error("Exception during screenshot: " + e.getMessage());
         }
     }
+
 }

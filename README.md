@@ -126,7 +126,7 @@ The structure of the test automation framework is organized to facilitate easy n
 
 ## Execution
 
-Start Selenium server:
+Start Selenium server if using RemoteWebDriver or headless mode: true
 
 ```bash 
 java -jar selenium-server-standalone.jar standalone
@@ -142,11 +142,21 @@ or
 mvn clean test -DsuiteXmlFile=testng.xml -Dbrowser=chrome -Denv=staging -Dheadless=true
 ```
 
+or
+
+```bash
+mvn clean test -DsuiteXmlFile=testng.xml
+```
+With the following default parameters:
+- `browser`: chrome
+- `env`: staging
+- `headless`: true
+
 ## CI/CD Integration
 
 Refer GitHub actions for CI/CD integration.
 
-/.github/workflows/test.yml
+`/.github/workflows/test.yml`
 
 ## Reporting
 
