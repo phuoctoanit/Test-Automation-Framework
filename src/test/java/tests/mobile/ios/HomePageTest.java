@@ -20,13 +20,14 @@ public class HomePageTest extends BaseTest{
     @Parameters("platform")
     @BeforeClass
     public void setUp(@Optional("IOS") String platform) throws Exception {
-
+        Logger.info("Initializing the test environment for iOS platform: " + platform);
         Allure.step("Initializing the test environment for iOS platform: " + platform);
         driver = MobileDriverFactory.getDriver(PlatformType.valueOf(platform.toUpperCase()));
-        IOSPageManager iosPageManager = new IOSPageManager((IOSDriver) driver);
         if (driver == null) {
             throw new IllegalStateException("Driver is not initialized.");
         }
+        IOSPageManager iosPageManager = new IOSPageManager((IOSDriver) driver);
+
         iosWelcomePage = iosPageManager.getIosHomePage();
     }
 
@@ -41,7 +42,7 @@ public class HomePageTest extends BaseTest{
 
         Logger.info("Verifying the Summary button is visible on the iOS Home Page.");
         Allure.step("Verifying the Summary button is visible on the iOS Home Page.");
-        iosWelcomePage.accessToSummaryPage();
+        iosWelcomePage.createNewReminder("Test Reminder", "This is a test node for the reminder.");
     }
 
     @AfterClass

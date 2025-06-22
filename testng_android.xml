@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Mobile Automation Testing - Android" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="org.demo.listeners.MobileReportingListener"/>
+    </listeners>
+    <test name="Mobile Automation Testing - Android">
+        <parameter name="platform" value="android"/>
+        <groups>
+            <run>
+                <include name="mobile"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.mobile.android.HomePageTest"/>
+        </classes>
+    </test>
+</suite>

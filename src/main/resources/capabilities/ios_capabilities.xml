@@ -1,0 +1,16 @@
+<capabilities>
+    <capability name="platformName" value="iOS" active="true"/>
+    <capability name="appium:deviceName" value="iPhone 16 Pro" active="true"/>
+    <capability name="appium:app" value="../src/test/resources/apps/ios-simulator-app.zip" active="false"/>
+    <capability name="appium:automationName" value="XCUITest" active="true"/>
+    <capability name="appium:platformVersion" value="18.5" active="true"/>
+    <capability name="appium:udid" value="F82B0A55-1628-4162-BDC2-492E864C4515" active="true"/>
+    <capability name="appium:bundleId" value="com.apple.reminders" active="true"/>
+    <capability name="appium:noReset" value="true" active="false"/>
+    <capability name="appium:xcodeOrgId" value="" active="false"/>
+    <capability name="appium:xcodeSigningId" value="" active="false"/>
+    <capability name="appium:useNewWDA" value="true" active="false"/>
+    <capability name="appium:wdaLaunchTimeout" value="60000" active="false"/>
+    <capability name="appium:boundElementsByIndex" value="true" active="true"/>
+    <url>http://localhost:4723/wd/hub</url>
+</capabilities>

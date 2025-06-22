@@ -3,19 +3,19 @@ package tests.web;
 import org.demo.constants.Constants;
 import org.demo.drivers.web.WebDriverSession;
 import org.demo.drivers.web.WebDriverFactory;
+import org.demo.listeners.WebReportingListener;
 import org.demo.managers.WebPageManager;
 import org.demo.utils.EnvLoader;
 import org.demo.utils.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-
+import org.testng.annotations.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
+@Listeners(WebReportingListener.class)
+@Test(groups = "web")
 public class BaseTest {
 
     protected WebDriver driver;
@@ -23,6 +23,8 @@ public class BaseTest {
 
     @BeforeSuite
     public void setup() {
+
+        Logger.info("Init BaseTest");
         String browser = System.getProperty("browser", Constants.DEFAULT_BROWSER); // fallback default
         String env = System.getProperty("env", Constants.DEFAULT_ENV);
 

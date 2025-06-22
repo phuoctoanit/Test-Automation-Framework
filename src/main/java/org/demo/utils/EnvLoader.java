@@ -16,6 +16,7 @@ public class EnvLoader {
             }
             properties.load(input);
         } catch (IOException ex) {
+            Logger.error("Error loading config file for env: " + env + " - " + ex.getMessage());
             throw new RuntimeException("Failed to load config for: " + env);
         }
     }

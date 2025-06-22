@@ -32,8 +32,8 @@ public class WebDriverFactory {
         WebDriver webDriver = null;
         String browser = browserName.get();
         if(browser == null) browser = Constants.DEFAULT_BROWSER;
-        switch (browser.toLowerCase()) {
-            case "firefox":
+        switch (BrowserType.valueOf(browser.toUpperCase())) {
+            case FIREFOX:
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("browserName", "firefox");
                 if (isCI()){
@@ -52,7 +52,7 @@ public class WebDriverFactory {
                     webDriver = new FirefoxDriver(firefoxOptions);
                 }
                 break;
-            case "chrome":
+            case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("browserName", "chrome");
                 if (isCI()) {
@@ -71,6 +71,13 @@ public class WebDriverFactory {
                     webDriver = new ChromeDriver(chromeOptions);
                 }
                 break;
+//            case EDGE:
+//                // Edge support can be added here if needed
+//                throw new UnsupportedOperationException("Edge browser is not supported yet.");
+//            case SAFARI:
+//                // Safari is not supported in Selenium Grid, so we skip it here
+//                Logger.warn("Safari is not supported in Selenium Grid. Please run locally.");
+//                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + browser.toLowerCase());
         }
@@ -93,6 +100,7 @@ public class WebDriverFactory {
 
     private static boolean isCI() {
         // Detect headless mode dynamically
+        Logger.info("Checking if running in CI or headless mode: " + System.getProperty("headless", String.valueOf(Constants.DEFAULT_HEADLESS)));
         return Boolean.parseBoolean(System.getProperty("headless", String.valueOf(Constants.DEFAULT_HEADLESS)))
                 || Boolean.parseBoolean(System.getenv("CI"));
     }

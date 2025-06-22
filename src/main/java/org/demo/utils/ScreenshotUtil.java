@@ -13,7 +13,7 @@ public class ScreenshotUtil {
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
         } catch (Exception e) {
-            System.err.println("Failed to capture screenshot: " + e.getMessage());
+            Logger.error("Failed to capture screenshot: " + e.getMessage());
         }
     }
 }

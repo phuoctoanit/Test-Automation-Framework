@@ -13,6 +13,7 @@ public class MobileDriverFactory {
         switch (platformType) {
             case IOS:
                 driverManager = new IOSDriverManager();
+                break;
             case ANDROID:
                 driverManager = new AndroidDriverManager();
                 break;

@@ -70,7 +70,7 @@ jobs:
           echo "STAGING_PASSWORD=${{ secrets.STAGING_PASSWORD }}" >> src/main/resources/env/credentials.properties
 
       - name: Run Tests (Chrome)
-        run: mvn clean test -DsuiteXmlFile=testng.xml -Dbrowser=${{ env.BROWSER }} -Denv=${{ env.ENV }}
+        run: mvn clean test -DsuiteXmlFile=testng_web.xml -Dbrowser=${{ env.BROWSER }} -Denv=${{ env.ENV }}
 
       - name: Generate Allure Report
         if: always()

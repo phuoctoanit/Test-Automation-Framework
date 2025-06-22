@@ -17,6 +17,7 @@ public class CredentialLoader {
             }
             credentialProperties.load(input);
         } catch (IOException ex) {
+            Logger.error("Error loading credentials.properties file: " + ex.getMessage());
             throw new RuntimeException(ex.getMessage());
         }
     }
@@ -33,15 +34,13 @@ public class CredentialLoader {
             return value;
         }
 
-        Logger.info("Not found in environment variables, checking properties file...");
+        Logger.debug("Not found in environment variables, checking properties file...");
         // Fallback to .properties file (local)
         value = credentialProperties.getProperty(envKey);
         if (value != null) {
             return value;
         }
-
-
-
+        Logger.error("Credential not found for key: " + envKey);
         throw new RuntimeException("Credential not found for key: " + envKey);
     }
 }

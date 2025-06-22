@@ -1,8 +1,13 @@
 package tests.mobile.ios;
 
+import org.demo.listeners.MobileReportingListener;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
+@Listeners(MobileReportingListener.class)
+@Test(groups = "mobile")
 public class BaseTest {
 
     @BeforeSuite
@@ -10,7 +15,7 @@ public class BaseTest {
         // Initialize the mobile session here
         // This could include setting up Appium driver, capabilities, etc.
         // Example: MobileDriverManager.getInstance().startSession();
-        System.out.println("Mobile session initialized.");
+        System.out.println("Mobile session initialized for ios testing.");
     }
 
     @AfterSuite
