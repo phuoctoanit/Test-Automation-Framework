@@ -7,9 +7,12 @@ import org.demo.pages.webapp.challenge.ChallengeDetailPage;
 import org.demo.pages.webapp.DashboardPage;
 import org.demo.pages.webapp.challenge.MyChallengePage;
 import org.demo.utils.Logger;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import providers.ChallengeDataProvider;
+import java.util.Optional;
 
 public class ChallengeTest extends BaseTest{
 
@@ -37,15 +40,40 @@ public class ChallengeTest extends BaseTest{
         challengeCreationPage.createChallenge(challenge);
         //Then should redirect to newly created challenge details
         Logger.info("Validation challenge in detail page");
-        Allure.step("Validation challenge in detail page");
-        challengeDetailPage.assertionTitle(challenge.getTitle());
-        challengeDetailPage.assertionPoint(challenge.getPoint());
-        challengeDetailPage.assertionDescription(challenge.getDescription());
+        Allure.step("Validate challenge in detail page:");
+        Allure.step("-- Validate challenge title");
+        Assert.assertEquals(challengeDetailPage.getTitle(), challenge.getTitle(), "Challenge title does not match");
+        Allure.step("-- Validate challenge point");
+        Assert.assertEquals(challengeDetailPage.getPoint(), challenge.getPoint(), "Point does not match");
+        Allure.step("-- Validate challenge description");
+        Assert.assertEquals(challengeDetailPage.getDescription(), challenge.getDescription(), "Description does not match");
 
         // And should be displayed in the dashboard
         Logger.info("Open My Challenge page to verify the newly created challenge");
         Allure.step("Open My Challenge page to verify the newly created challenge");
         dashboardPage.openMyChallenge();
-        myChallengePage.verifyNewlyCreatedChallenge(challenge);
+        Allure.step("Verify newly created challenge in My Challenge page");
+        dashboardPage.assertUrlContains("/challenge/by/");
+        dashboardPage.waitForPageLoaded(driver);
+
+        Allure.step("Validate challenge in My Challenge page:");
+        Allure.step("-- Validate challenge title");
+        Optional<WebElement> cartOpt = myChallengePage.findChallengeCardByTitle(challenge.getTitle());
+        Assert.assertTrue(cartOpt.isPresent(), "Challenge card with title '" + challenge.getTitle() + "' not found in My Challenge page");
+
+        WebElement cart = cartOpt.get();
+        Assert.assertEquals(myChallengePage.getChallengeTitle(cart), challenge.getTitle(), "Challenge title in My Challenge page does not match");
+
+        Allure.step("-- Validate challenge point");
+        Assert.assertEquals(myChallengePage.getChallengePoint(cart), challenge.getPoint(), "Challenge point in My Challenge page does not match");
+
+        Allure.step("-- Validate challenge status");
+        Assert.assertEquals(myChallengePage.getChallengeStatus(cart), challenge.getStatus(), "Challenge status in My Challenge page does not match");
+
+        Allure.step("-- Validate challenge category");
+        Assert.assertEquals(myChallengePage.getChallengeCategory(cart), challenge.getCategory(), "Challenge category in My Challenge page does not match");
+
+        Allure.step("-- Validate challenge created by");
+        Assert.assertEquals(myChallengePage.getChallengeCreatedBy(cart), challenge.getCreatedBy(), "Challenge created by in My Challenge page does not match");
     }
 }

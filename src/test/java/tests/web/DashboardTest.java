@@ -24,5 +24,8 @@ public class DashboardTest extends BaseTest {
         Logger.info("Open the Challenge Creation page");
         Allure.step("Open the Challenge Creation page");
         dashboardPage.openChallengeCreation();
+        Allure.step("Verify the Challenge Creation page is opened");
+        dashboardPage.assertUrlContains("/challenge/create");
+        dashboardPage.waitForPageLoaded(driver);
     }
 }

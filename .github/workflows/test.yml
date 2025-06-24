@@ -24,7 +24,6 @@ jobs:
       STAGING_USERNAME: ${{ secrets.STAGING_USERNAME }}
       STAGING_PASSWORD: ${{ secrets.STAGING_PASSWORD }}
 
-
     services:
       selenium:
         image: selenium/standalone-chrome:latest

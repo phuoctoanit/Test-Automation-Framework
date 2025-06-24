@@ -1,6 +1,5 @@
 package org.demo.base;
 
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
 public class IOSBasePage {
@@ -10,4 +9,6 @@ public class IOSBasePage {
     protected IOSBasePage(IOSDriver driver) {
         this.driver = driver;
     }
+
+    // Include any common methods or properties that all iOS pages should have
 }

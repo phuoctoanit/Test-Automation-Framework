@@ -22,7 +22,7 @@ mkdir -p "$LOG_DIR"  # Ensure the log directory exists
 
 LOG_FILE="selenium-grid-log-$(date +%Y%m%d-%H%M%S).log"
 
-SELENIUM_JAR_PATH="../drivers/selenium-server-4.33.0.jar"
+SELENIUM_JAR_PATH="drivers/selenium-server-4.33.0.jar"
 if [[ ! -f "$SELENIUM_JAR_PATH" ]]; then
     echo "❌ Error: Selenium server jar not found at $SELENIUM_JAR_PATH"
     exit 1

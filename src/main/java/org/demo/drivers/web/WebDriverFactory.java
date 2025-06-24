@@ -13,10 +13,13 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
+/**
+ * WebDriverFactory is a utility class that manages the creation and lifecycle of WebDriver instances.
+ */
 public class WebDriverFactory {
 
-    private static ThreadLocal<WebDriver> tlWedDriver = new ThreadLocal<>();
-    private static ThreadLocal<String> browserName = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> tlWedDriver = new ThreadLocal<>();
+    private static final ThreadLocal<String> browserName = new ThreadLocal<>();
 
     private static final String GRID_URL = "http://localhost:4444/wd/hub";
 
@@ -89,7 +92,7 @@ public class WebDriverFactory {
         return  tlWedDriver.get();
     }
 
-    public static String browserName() { return browserName.get(); }
+    //public static String browserName() { return browserName.get(); }
 
     public static void quitDriver() {
         if(getDriver() != null) {

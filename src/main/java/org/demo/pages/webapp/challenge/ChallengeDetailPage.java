@@ -3,12 +3,7 @@ package org.demo.pages.webapp.challenge;
 import org.demo.base.WebBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
-import java.time.Duration;
 
 public class ChallengeDetailPage extends WebBasePage {
 
@@ -20,25 +15,20 @@ public class ChallengeDetailPage extends WebBasePage {
         super(driver);
     }
 
-    public void isLoaded(){
-
+    public boolean isLoaded(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(titleField)).isDisplayed();
     }
 
-    public void assertionTitle(String title) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement titleEle = wait.until(ExpectedConditions.visibilityOfElementLocated(titleField));
-        Assert.assertEquals(titleEle.getText(), title, "Challenge title not matched");
+    public String getTitle() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(titleField)).getText();
     }
 
-    public void assertionPoint(int point) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement pointEle = wait.until(ExpectedConditions.visibilityOfElementLocated(pointField));
-        Assert.assertEquals(pointEle.getText(), String.valueOf(point), "Challenge points not matched");
+    public int getPoint() {
+        String pointText = wait.until(ExpectedConditions.visibilityOfElementLocated(pointField)).getText();
+        return Integer.parseInt(pointText.replaceAll("[^0-9]", ""));
     }
 
-    public void assertionDescription(String description) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement descriptionEle = wait.until(ExpectedConditions.visibilityOfElementLocated(descriptionField));
-        Assert.assertTrue(descriptionEle.getText().contains(description), "Challenge description not matched");
+    public String getDescription() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(descriptionField)).getText();
     }
 }

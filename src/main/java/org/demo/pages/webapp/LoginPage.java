@@ -4,7 +4,6 @@ import org.demo.base.WebBasePage;
 import org.demo.utils.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class LoginPage extends WebBasePage {
 
@@ -19,13 +18,8 @@ public class LoginPage extends WebBasePage {
 
     public void login(String userName, String password) {
         Logger.info("Input username and password");
-        WebElement userNameEle = driver.findElement(usernameField);
-        WebElement passwordEle = driver.findElement(passwordField);
-        WebElement loginBtn = driver.findElement(loginButton);
-        userNameEle.sendKeys(userName);
-        passwordEle.sendKeys(password);
-        loginBtn.click();
-
-        assertUrlContains("/dashboard");
+        super.sendKeys(usernameField, userName);
+        super.sendKeys(passwordField, password);
+        super.click(loginButton);
     }
 }

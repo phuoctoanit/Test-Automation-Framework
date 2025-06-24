@@ -9,6 +9,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
 
+/**
+ * AndroidDriverManager is responsible for creating an instance of AndroidDriver
+ * with the appropriate capabilities and URL.
+ */
 public class AndroidDriverManager implements MobileDriverImplement {
 
     @Override

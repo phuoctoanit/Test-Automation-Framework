@@ -6,6 +6,10 @@ import org.demo.pages.webapp.challenge.ChallengeDetailPage;
 import org.demo.pages.webapp.challenge.MyChallengePage;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * This class manages the web pages for the application.
+ * It initializes and provides access to the web-specific pages.
+ */
 public class WebPageManager {
 
     private final WebDriver driver;

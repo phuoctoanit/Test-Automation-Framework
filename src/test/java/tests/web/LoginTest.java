@@ -36,5 +36,8 @@ public class LoginTest extends BaseTest{
         String password = CredentialLoader.getCredential("password");
         Allure.step("Perform login with username: *** and password: ***");
         loginPage.login(username, password);
+        Allure.step("Assert that the user is redirected to the dashboard after login");
+        loginPage.assertUrlContains("/dashboard");
+
     }
 }
