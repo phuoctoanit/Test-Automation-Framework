@@ -151,8 +151,7 @@ The structure of the test automation framework is organized to facilitate easy n
 
 #### 1. For web testing, ensure you have the Selenium server running. You can start it by running the following command in the terminal:
 ```bash 
-cd setups
-./start-selenium-server.sh
+./setups/start-selenium-server.sh
 ```
 Then run the tests using Maven:
 ```bash
@@ -169,8 +168,7 @@ With the following default parameters:
 #### 2. For mobile testing, ensure you have Appium server running. You can start it by running the following command in the terminal:
 ##### a. Android testing
 ```bash
-cd setups
-./start-appium-server-android.sh
+./setups/start-appium-server-android.sh
 ```
 Then run the tests using Maven:
 ```bash
@@ -178,8 +176,7 @@ mvn clean test -DsuiteXmlFile=testng_android.xml
 ```
 ##### b. iOS testing
 ```bash
-cd setups
-./start-appium-server-ios.sh
+./setups/start-appium-server-ios.sh
 ```
 Then run the tests using Maven:
 ```bash
