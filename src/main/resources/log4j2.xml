@@ -7,22 +7,22 @@
         </Console>
 
         <!-- Rolling File Output -->
-        <RollingFile name="FileLogger"
-                     fileName="logs/log.log"
-                     filePattern="logs/log_%d{yyyy-MM-dd_HH-mm-ss}-%i.log">
-            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] %c{1} - %msg%n"/>
-            <DefaultRolloverStrategy max="10"/>
+        <RollingFile name="RollingFileLogger"
+                     fileName="logs/test-output.log"
+                     filePattern="logs/test-output-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d [%t] %-5p %c - %m%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy />
-                <SizeBasedTriggeringPolicy size="10MB" />
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
             </Policies>
+            <DefaultRolloverStrategy max="10"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="FileLogger"/>
+            <AppenderRef ref="RollingFileLogger"/>
         </Root>
     </Loggers>
 </Configuration>

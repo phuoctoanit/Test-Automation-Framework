@@ -6,6 +6,7 @@ import org.demo.pages.webapp.LoginPage;
 import org.demo.utils.CredentialLoader;
 import org.demo.utils.EnvLoader;
 import org.demo.utils.Logger;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -37,7 +38,6 @@ public class LoginTest extends BaseTest{
         Allure.step("Perform login with username: *** and password: ***");
         loginPage.login(username, password);
         Allure.step("Assert that the user is redirected to the dashboard after login");
-        loginPage.assertUrlContains("/dashboard");
-
+        Assert.assertTrue(loginPage.urlContains("/dashboard"), "URL does not contain '/dashboard'");
     }
 }

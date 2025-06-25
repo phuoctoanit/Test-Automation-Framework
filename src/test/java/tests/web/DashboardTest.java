@@ -3,6 +3,7 @@ package tests.web;
 import io.qameta.allure.*;
 import org.demo.pages.webapp.DashboardPage;
 import org.demo.utils.Logger;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,7 @@ public class DashboardTest extends BaseTest {
         Allure.step("Open the Challenge Creation page");
         dashboardPage.openChallengeCreation();
         Allure.step("Verify the Challenge Creation page is opened");
-        dashboardPage.assertUrlContains("/challenge/create");
-        dashboardPage.waitForPageLoaded(driver);
+        Assert.assertTrue(dashboardPage.urlContains("/challenge/create"), "URL does not contain '/challenge/create'");
+        dashboardPage.waitForPageLoaded();
     }
 }

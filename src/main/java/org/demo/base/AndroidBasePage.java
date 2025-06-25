@@ -1,6 +1,9 @@
 package org.demo.base;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 /**
  * Base class for all Android pages.
@@ -9,8 +12,10 @@ import io.appium.java_client.android.AndroidDriver;
 public class AndroidBasePage {
 
     protected AndroidDriver driver;
+    protected WebDriverWait wait;
 
     protected AndroidBasePage(AndroidDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // Adjust the timeout as needed
     }
 }

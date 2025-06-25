@@ -83,6 +83,13 @@ jobs:
           name: allure-report
           path: allure-report
 
+      - name: Upload log file (test-output.log)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: logs/*.log
+
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4

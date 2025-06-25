@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
 import java.time.Duration;
 import java.util.Objects;
 
@@ -25,10 +23,9 @@ public abstract class WebBasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public void assertUrlContains(String fragment) {
+    public boolean urlContains(String fragment) {
         wait.until(ExpectedConditions.urlContains(fragment));
-        Assert.assertTrue(Objects.requireNonNull(driver.getCurrentUrl()).contains(fragment),
-                "Expected URL to contain: " + fragment + " but was: " + driver.getCurrentUrl());
+        return Objects.requireNonNull(driver.getCurrentUrl()).contains(fragment);
     }
 
     public void selectItemByVisibleText(By by, String item) {
@@ -37,8 +34,8 @@ public abstract class WebBasePage {
         select.selectByVisibleText(item);
     }
 
-    public void waitForPageLoaded(WebDriver driver) {
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(
+    public void waitForPageLoaded() {
+        wait.until(
                 webDriver -> Objects.equals(((JavascriptExecutor) webDriver)
                         .executeScript("return document.readyState"), "complete"));
     }

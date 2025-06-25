@@ -53,8 +53,8 @@ public class ChallengeTest extends BaseTest{
         Allure.step("Open My Challenge page to verify the newly created challenge");
         dashboardPage.openMyChallenge();
         Allure.step("Verify newly created challenge in My Challenge page");
-        dashboardPage.assertUrlContains("/challenge/by/");
-        dashboardPage.waitForPageLoaded(driver);
+        Assert.assertTrue(dashboardPage.urlContains("/challenge/by/"), "URL does not contain '/challenge/by/'");
+        dashboardPage.waitForPageLoaded();
 
         Allure.step("Validate challenge in My Challenge page:");
         Allure.step("-- Validate challenge title");

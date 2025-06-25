@@ -1,7 +1,7 @@
 <capabilities>
     <capability name="platformName" value="Android" active="true"/>
     <capability name="appium:deviceName" value="emulator-5554" active="true"/>
-    <capability name="appium:app" value="../src/test/resources/apps/ApiDemos-debug.apk" active="true"/>
+    <capability name="appium:app" value="/src/test/resources/apps/ApiDemos-debug.apk" active="true"/>
     <capability name="appium:automationName" value="UiAutomator2" active="true"/>
     <capability name="appium:noReset" value="true" active="false"/>
     <capability name="appium:fullReset" value="false" active="false"/>
@@ -10,6 +10,6 @@
     <capability name="appium:autoGrantPermissions" value="true" active="true"/>
     <capability name="appium:uiautomator2ServerInstallTimeout" value="60000" active="true"/>
     <capability name="appium:uiautomator2ServerLaunchTimeout" value="60000" active="true"/>
-    <capability name="appium:adbExecTimeout" value="60000" active="true"/>
+    <capability name="appium:adbExecTimeout" value="120000" active="true"/>
     <url>http://localhost:4725/wd/hub</url>
 </capabilities>

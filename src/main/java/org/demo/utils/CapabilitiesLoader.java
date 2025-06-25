@@ -6,12 +6,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class CapabilitiesLoader {
 
@@ -26,19 +23,23 @@ public class CapabilitiesLoader {
         }
     }
 
-    public static String getURL(PlatformType platform) {
-        String path = getCapabilitiesPath(platform);
-        try{
-            File file = new File(path);
-            if (!Files.exists(Paths.get(path))) {
-                Logger.error("Capabilities file not found: " + path);
-                return "";
-            }
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
-            doc.getDocumentElement().normalize();
 
+    private static Document loadXmlDocument(String path) throws Exception {
+        File file = new File(path);
+        if (!file.exists()) {
+            throw new RuntimeException("Capabilities file not found: " + path);
+        }
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc =  builder.parse(file);
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
+    public static String getURL(PlatformType platform) {
+        try{
+            String path = getCapabilitiesPath(platform);
+            Document doc = loadXmlDocument(path);
             NodeList capList = doc.getElementsByTagName("url");
             if (capList.getLength() == 0) {
                 Logger.error("No URL found in capabilities file: " + path);
@@ -64,20 +65,10 @@ public class CapabilitiesLoader {
     }
 
     public static DesiredCapabilities getCapability(PlatformType platform) {
-        String path = getCapabilitiesPath(platform);
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
         try {
-            File file = new File(path);
-            if (!Files.exists(Paths.get(path))) {
-                Logger.error("Capabilities file not found: " + path);
-                return capabilities;
-            }
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
-            doc.getDocumentElement().normalize();
-
+            String path = getCapabilitiesPath(platform);
+            Document doc = loadXmlDocument(path);
             NodeList capList = doc.getElementsByTagName("capability");
             for (int i = 0; i < capList.getLength(); i++) {
                 Node node = capList.item(i);
@@ -89,6 +80,13 @@ public class CapabilitiesLoader {
                     if ("false".equalsIgnoreCase(active)) {
                         Logger.debug("Skipping inactive capability: " + name);
                         continue;
+                    }
+                    if(name.equalsIgnoreCase("appium:app")) {
+                        if (!value.isEmpty()) {
+                            value = new File(System.getProperty("user.dir") + value).getAbsolutePath();
+                        } else {
+                            Logger.error("App path is empty for capability: " + name);
+                        }
                     }
                     capabilities.setCapability(name, parseValue(value));
                 }
@@ -102,6 +100,11 @@ public class CapabilitiesLoader {
     private static Object parseValue(String value) {
         if ("true".equalsIgnoreCase(value)) return true;
         if ("false".equalsIgnoreCase(value)) return false;
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            // Not an integer, return as string
+        }
         return value;
     }
 }
